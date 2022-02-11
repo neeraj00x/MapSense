@@ -87,11 +87,11 @@ function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds(15));
 };
 
-var info = L.control();
 
 //====================================================================================================
 //                     Custom Info
 //====================================================================================================
+var info = L.control();
 
 info.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
@@ -104,7 +104,7 @@ info.update = function (props) {
         `<b>State Name: ${props.st_nm}</b><p>State Code: ${props.state_code}</p>`
         : 'Hover over a state');
 };
-
+info.addTo(map);
 // info.onAdd = function (map) {
 //     this._div = L.DomUtil.create('div', 'Card'); // create a div with a class "info"
 //     this.update();
@@ -131,20 +131,17 @@ info.update = function (props) {
 //====================================================================================================
 
 window.onload = function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        info.addTo(map);
-        L.marker([position.coords.latitude, position.coords.longitude]).addTo(map)
-            .bindPopup('Geolocation is not supported by this browser.')
-            .openPopup();
-        
-    }
+        navigator.geolocation.getCurrentPosition(success, error);
 }
 
-function showPosition(position) {
-    info.addTo(map);
+function success(position) {
     L.marker([position.coords.latitude, position.coords.longitude]).addTo(map)
         .bindPopup('You are here')
         .openPopup();
+}
+
+function error() {
+    L.marker([28.6139, 77.2090]).addTo(map)
+            .bindPopup('New Delhi')
+            .openPopup();
 }
