@@ -10,7 +10,7 @@ var bingKey = 'AtDkwBBKtDzN5YZi0sy7cSB48oOx5h-mVrJMFGtjQQjIlGe6Jhj4mSr0RtWSzhJO'
 
 var map = L.map('map', {
     center: [23.010051, 80.526142],
-    zoom: 4.75,
+    zoom: 4.5,
     zoomSnap: 0.25
 });
 L.tileLayer.bing(options).addTo(map)
