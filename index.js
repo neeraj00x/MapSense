@@ -43,7 +43,7 @@ var geojson = L.geoJSON(stateData, {
         layer.on({
             mouseover: highlightFeature,
             mouseout: resetHighlight,
-            click: zoomToFeature
+            click: onClickLayer
         });
     },
 }).bindPopup(function (layer) {
@@ -83,7 +83,7 @@ function resetHighlight(e) {
     info.update();
 }
 
-function zoomToFeature(e) {
+function onClickLayer(e) {
     map.fitBounds(e.target.getBounds(15));
 };
 
